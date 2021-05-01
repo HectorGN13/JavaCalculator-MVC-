@@ -135,12 +135,7 @@ public class ViewCal extends JFrame {
         //Boton "="
         JButton igual = new JButton("=");
         igual.setFont(new Font("Dialog", Font.BOLD, 30));
-        igual.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
+        igual.addActionListener( new ControllerCal.igualListener());
         JPanel izq = new JPanel ();
         izq.setLayout(new GridLayout(1,3));
         izq.add(masMenos);
@@ -155,10 +150,7 @@ public class ViewCal extends JFrame {
 
         JButton botonBorrar = new JButton("AC");
         botonBorrar.setFont(new Font("Dialog", Font.BOLD, 30));
-        botonBorrar.addActionListener(e -> {
-            data.setText("0");
-            dataSaved.setText("0");
-        });
+        botonBorrar.addActionListener( new ControllerCal.ACListener());
 
         JButton botonRetroceso = new JButton("C");
         botonRetroceso.setFont(new Font("Dialog", Font.BOLD, 30));
@@ -177,34 +169,19 @@ public class ViewCal extends JFrame {
 
         JButton porcentaje = new JButton("%");
         porcentaje.setFont(new Font("Dialog", Font.BOLD, 30));
-        porcentaje.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
+        porcentaje.addActionListener(new ControllerCal.PercentListener());
 
         //Boton x²
 
         JButton potencia2 = new JButton("x²");
         potencia2.setFont(new Font("Dialog", Font.BOLD, 30));
-        potencia2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
+        potencia2.addActionListener(new ControllerCal.PowListener());
 
         //Boton √
 
         JButton raizCuadrada = new JButton("√");
         raizCuadrada.setFont(new Font("Dialog", Font.BOLD, 30));
-        raizCuadrada.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
+        raizCuadrada.addActionListener(new ControllerCal.SqrtListener());
 
         symbols.setLayout(new GridLayout(3,1));
         symbols.add(botonRetroceso);
@@ -228,16 +205,21 @@ public class ViewCal extends JFrame {
     private void crearBotonesOperaciones(String simbolo){
         JButton btn = new JButton(simbolo);
         btn.setFont(new Font("Dialog", Font.BOLD, 30));
-        btn.addActionListener(e -> {
-            if(!data.getText().substring(data.getText().length()-1).contains(btn.getText())){
-                dataSaved.setText(data.getText()+ btn.getText());
-                data.setText("0");
-            }
-        });
+        btn.addActionListener(new ControllerCal.OperatorListener());
 
         symbols.add(btn);
     }
 
+    //GETTERS
+
+
+    public JTextField getDataSaved() {
+        return dataSaved;
+    }
+
+    public JTextField getData() {
+        return data;
+    }
 }
 
 
