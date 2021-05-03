@@ -69,7 +69,7 @@ public class ViewCal extends JFrame {
         data.setPreferredSize(new Dimension(330 ,40));
         data.setBackground(Color.WHITE);                                // seleccionamos el color que queremos darle
         data.setEditable(false);                                         // para que no podamos editar el numero
-        data.setText("0");                                              // el numero inicial que aparece.
+        data.setText("");                                              // el numero inicial que aparece.
         data.setHorizontalAlignment(JTextField.RIGHT);
         data.setBorder(new EmptyBorder(4, 4, 4, 4));
 
@@ -99,12 +99,14 @@ public class ViewCal extends JFrame {
         JButton masMenos = new JButton("+/-");
         masMenos.setFont(new Font("Dialog", Font.BOLD, 30));
         masMenos.addActionListener(e -> {
-            float f = Float.parseFloat(data.getText());
-            if (f != 0) {
-                if (f > 0.0f) {
-                    data.setText("-" + data.getText());
-                } else {
-                    data.setText(data.getText().substring(1));
+            if (data.getText().length() > 1 ){
+                float f = Float.parseFloat(data.getText());
+                if (f != 0) {
+                    if (f > 0.0f) {
+                        data.setText("-" + data.getText());
+                    } else {
+                        data.setText(data.getText().substring(1));
+                    }
                 }
             }
         });
@@ -126,8 +128,12 @@ public class ViewCal extends JFrame {
         JButton coma = new JButton(".");
         coma.setFont(new Font("Dialog", Font.BOLD, 30));
         coma.addActionListener(e -> {
-            if(!data.getText().contains(".")){
-                data.setText(data.getText()+ ".");
+            if (data.getText().length() > 1 ){
+                if(!data.getText().contains(".")){
+                    data.setText(data.getText()+ ".");
+                }
+            } else {
+                data.setText("0.");
             }
         });
 
@@ -155,14 +161,11 @@ public class ViewCal extends JFrame {
         JButton botonRetroceso = new JButton("C");
         botonRetroceso.setFont(new Font("Dialog", Font.BOLD, 30));
         botonRetroceso.addActionListener(e -> {
-            if(!data.getText().equalsIgnoreCase("0")){
-                if (data.getText().length() > 1 ){
-                    data.setText(data.getText().substring(0, data.getText().length()-1));
-                } else {
-                    data.setText("0");
-                }
+            if (data.getText().length() > 1 ){
+                data.setText(data.getText().substring(0, data.getText().length()-1));
+            } else {
+                data.setText("");
             }
-
         });
 
         //Boton %

@@ -17,22 +17,18 @@ public class ControllerCal {
     static class igualListener implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
-
-            String operando;
             String operador;
 
             try {
 
-                operando = view.getDataSaved().getText();
                 operador = view.getData().getText();
 
                 if (!operador.equalsIgnoreCase("0")) {
-                    model.calcular(operando, operador);
+                    model.calcular(operador);
 
-                    view.getDataSaved().setText(String.valueOf(model.getResult()));
-                    view.getData().setText("0");
+                    view.getData().setText(String.valueOf(model.getResult()));
                 } else {
-                    view.getDataSaved().setText(String.valueOf(model.getResult()));
+                    view.getData().setText(String.valueOf(model.getResult()));
                 }
 
             } catch(NumberFormatException ex) {
@@ -46,9 +42,7 @@ public class ControllerCal {
     static class ACListener implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
-
-            view.getDataSaved().setText("0");
-            view.getData().setText("0");
+            view.getData().setText("");
             model.borrarMemoria();
         }
 
@@ -61,8 +55,7 @@ public class ControllerCal {
 
             if (!operador.equalsIgnoreCase("0")) {
                 model.potencia2(operador);
-                view.getDataSaved().setText(String.valueOf(model.getResult()));
-                view.getData().setText("0");
+                view.getData().setText(String.valueOf(model.getResult()));
             }
         }
     }
@@ -74,8 +67,7 @@ public class ControllerCal {
 
             if (!operador.equalsIgnoreCase("0")) {
                 model.porcentaje(operador);
-                view.getDataSaved().setText(String.valueOf(model.getResult()));
-                view.getData().setText("0");
+                view.getData().setText(String.valueOf(model.getResult()));
             }
         }
     }
@@ -88,8 +80,7 @@ public class ControllerCal {
 
             if (!operador.equalsIgnoreCase("0")) {
                 model.raizCuadrada(operador);
-                view.getDataSaved().setText(String.valueOf(model.getResult()));
-                view.getData().setText("0");
+                view.getData().setText(String.valueOf(model.getResult()));
             }
         }
     }
@@ -99,16 +90,9 @@ public class ControllerCal {
         public void actionPerformed(ActionEvent e) {
             String operador = view.getData().getText();
 
-            double x = Double.parseDouble(operador);
-            double y = Double.parseDouble(model.getResult());
-
-            if (!operador.substring(operador.length()-1).contains(e.getActionCommand())) {
-                    model.calcular(model.getResult(), operador);
-                    view.getDataSaved().setText(operador + e.getActionCommand());
-                    view.getData().setText("0");
+            if (operador.length() > 0 && !operador.substring(operador.length()-1).contains(e.getActionCommand())) {
+                    view.getData().setText(operador + e.getActionCommand());
             }
-
-
         }
     }
 

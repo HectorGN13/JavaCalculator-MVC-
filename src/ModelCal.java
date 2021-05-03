@@ -22,9 +22,7 @@ public class ModelCal {
         return result;
     }
 
-    void calcular(String operando, String operador) {
-        String expresion = operando+operador;
-
+    void calcular(String expresion) {
         try {
             setResult(String.valueOf(scriptEngine.eval(expresion)));
         } catch (ScriptException e) {
