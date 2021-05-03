@@ -1,8 +1,6 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class ViewCal extends JFrame {
 
@@ -79,6 +77,7 @@ public class ViewCal extends JFrame {
         for (int i = 1; i < 10; i++) {
             JButton btn = new JButton(""+i);
             btn.setFont(new Font("Dialog", Font.BOLD, 30));
+            btn.setBackground(Color.white);
             btn.addActionListener(e -> {
                 String numero = btn.getText();
                 if (data.getText().equalsIgnoreCase("0")){
@@ -98,6 +97,8 @@ public class ViewCal extends JFrame {
         //Boton +/-
         JButton masMenos = new JButton("+/-");
         masMenos.setFont(new Font("Dialog", Font.BOLD, 30));
+        masMenos.setBackground(Color.GRAY);
+        masMenos.setForeground(Color.white);
         masMenos.addActionListener(e -> {
             if (data.getText().length() > 1 ){
                 float f = Float.parseFloat(data.getText());
@@ -114,6 +115,7 @@ public class ViewCal extends JFrame {
         //Boton 0
         JButton cero = new JButton("0");
         cero.setFont(new Font("Dialog", Font.BOLD, 30));
+        cero.setBackground(Color.white);
         cero.addActionListener(e -> {
             String numero = cero.getText();
             if (data.getText().equalsIgnoreCase("0")){
@@ -127,6 +129,8 @@ public class ViewCal extends JFrame {
         //Boton ","
         JButton coma = new JButton(".");
         coma.setFont(new Font("Dialog", Font.BOLD, 30));
+        coma.setBackground(Color.GRAY);
+        coma.setForeground(Color.white);
         coma.addActionListener(e -> {
             if (data.getText().length() > 1 ){
                 if(!data.getText().contains(".")){
@@ -142,6 +146,7 @@ public class ViewCal extends JFrame {
         JButton igual = new JButton("=");
         igual.setFont(new Font("Dialog", Font.BOLD, 30));
         igual.addActionListener( new ControllerCal.igualListener());
+        igual.setBackground(Color.cyan);
         JPanel izq = new JPanel ();
         izq.setLayout(new GridLayout(1,3));
         izq.add(masMenos);
@@ -157,8 +162,12 @@ public class ViewCal extends JFrame {
         JButton botonBorrar = new JButton("AC");
         botonBorrar.setFont(new Font("Dialog", Font.BOLD, 30));
         botonBorrar.addActionListener( new ControllerCal.ACListener());
+        botonBorrar.setBackground(Color.RED);
+        botonBorrar.setForeground(Color.white);
 
         JButton botonRetroceso = new JButton("C");
+        botonRetroceso.setBackground(Color.RED);
+        botonRetroceso.setForeground(Color.white);
         botonRetroceso.setFont(new Font("Dialog", Font.BOLD, 30));
         botonRetroceso.addActionListener(e -> {
             if (data.getText().length() > 1 ){
@@ -173,18 +182,25 @@ public class ViewCal extends JFrame {
         JButton porcentaje = new JButton("%");
         porcentaje.setFont(new Font("Dialog", Font.BOLD, 30));
         porcentaje.addActionListener(new ControllerCal.PercentListener());
+        porcentaje.setBackground(Color.BLACK);
+        porcentaje.setForeground(Color.white);
 
         //Boton x²
 
         JButton potencia2 = new JButton("x²");
         potencia2.setFont(new Font("Dialog", Font.BOLD, 30));
         potencia2.addActionListener(new ControllerCal.PowListener());
+        potencia2.setBackground(Color.BLACK);
+        potencia2.setForeground(Color.white);
+
 
         //Boton √
 
         JButton raizCuadrada = new JButton("√");
         raizCuadrada.setFont(new Font("Dialog", Font.BOLD, 30));
         raizCuadrada.addActionListener(new ControllerCal.SqrtListener());
+        raizCuadrada.setBackground(Color.BLACK);
+        raizCuadrada.setForeground(Color.white);
 
         symbols.setLayout(new GridLayout(3,1));
         symbols.add(botonRetroceso);
@@ -209,6 +225,8 @@ public class ViewCal extends JFrame {
         JButton btn = new JButton(simbolo);
         btn.setFont(new Font("Dialog", Font.BOLD, 30));
         btn.addActionListener(new ControllerCal.OperatorListener());
+        btn.setBackground(Color.BLACK);
+        btn.setForeground(Color.white);
 
         symbols.add(btn);
     }
